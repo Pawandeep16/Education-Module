@@ -507,9 +507,7 @@ def get_bus_route(user):
     r = frappe.db.get_value("Bus Route",user,["category_name","description","amount"])
     return r
 
-# SELECT child.Id,
-#        child.Name,
-#        child.ParentId,
-#        parent.Name as ParentName
-# FROM your_table child
-# JOIN your_table parent ON child.ParentId = parent.id
+@frappe.whitelist()
+def get_programEnrollment_details(user = "EDU-STU-2022-00001"):
+    bus = frappe.db.sql(f""" SELECT name,program,academic_year,academic_term FROM `tabProgram Enrollment` where student = '{user}' """,as_dict = True)
+    return bus
