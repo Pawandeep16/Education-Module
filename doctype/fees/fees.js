@@ -256,6 +256,7 @@ frappe.ui.form.on("Fees", {
       //       }
       //     },
       //   });
+
       frappe.call({
         method: "erpnext.education.api.get_programEnrollment_details",
         args: { user: frm.doc.student },
